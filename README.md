@@ -1,6 +1,7 @@
 # RpiNtripBase
 
-Dies ist eine einfach zu konfigurierende F9P-Basis für den RPI.
+Dies ist eine einfach zu konfigurierende RTK-Basisstation für den RPI. Verschiedene GPS-Empfänger können angeschlossen werden,
+normalerweise über USB, direkt and die seriellen Schnittstellen geht aber auch.
 
 # Features
 * NTRIP Caster auf Port 2101
@@ -176,4 +177,11 @@ sudo systemctl start str2str.service
 Falls die Baudrate geändert wird , muss wie oben beschrieben der Service `baseProxy` mit der
 neuen Baudrate gestartet werden. Wenn es nur temporär ist, müssen die Kommandos mit `systemctl enable ...` und `systemctl disable ...`
 nicht eingegeben werden.
+
+# RTCM 1008
+
+Wenn bestimmte Empfänger verwendet werden (z.B. Trimble), müssen leere RTCM-1008-Nachrichten in den Datenstrom eingefügt werden, falls
+diese nicht vom GPS-Empfänger selbst erstellt werden. Wenn dies gewünscht ist, muss anstatt von ```str2str.service```
+```str2str-injectrtcm1008.service``` ausgeführt und aktiviert werden. Der Rest bleibt gleich. Nachzulesen unter diesem
+[Link](https://www.thecombineforum.com/forums/31-technology/331721-how-use-zed-f9p-base-station-trimble.html)
 
